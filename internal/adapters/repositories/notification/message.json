@@ -1,0 +1,61 @@
+{
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "New hard coded secrets found:\n*<http://localhost:8080/repos/90|repoName>*"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Commit:*\n commitUrl"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*When:*\n Detected date"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Pipeline:*\n pipelineUrl"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Findings Count:*\n counter"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Author:*\n Author"
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "emoji": true,
+            "text": "Approve"
+          },
+          "style": "primary",
+          "value": "click_me_123"
+        },
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "emoji": true,
+            "text": "Deny"
+          },
+          "style": "danger",
+          "value": "click_me_123"
+        }
+      ]
+    }
+  ]
+}

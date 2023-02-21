@@ -1,0 +1,6 @@
+.idea
+builds
+local_only
+prod.env
+/web/node_modules/
+vendor/

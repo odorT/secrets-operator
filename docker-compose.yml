@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  mongo:
+    image: 'mongo'
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=secrets-operator
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./docker/mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+
+#  secrets-operator:
+#    build:
+#      context: .
+#    container_name: secrets-operator
+#    environment:
+#      MONGO_HOST: mongo
+#    ports:
+#      - '8080:8080'
+#    depends_on:
+#      - mongo
+#    logging:
+#      driver: gelf
+#      options:
+#        gelf-address: "udp://localhost:12201"
+#        tag: "secrets-operator"

@@ -1,0 +1,54 @@
+### Gitleaks Config file
+
+[extend]
+# useDefault will extend the base configuration with the default gitleaks config:
+# https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml
+useDefault = true
+
+
+## Custom rules
+
+[[rules]]
+description = "WP-Config"
+id = "wordpress-config"
+regex = '''define(.{0,20})?(DB_CHARSET|NONCE_SALT|LOGGED_IN_SALT|AUTH_SALT|NONCE_KEY|DB_HOST|DB_PASSWORD|AUTH_KEY|SECURE_AUTH_KEY|LOGGED_IN_KEY|DB_NAME|DB_USER)(.{0,20})?['|"].{10,120}['|"]'''
+keywords = [
+    "define"
+]
+
+# [[rules]]
+# description = "Generic Credential"
+# id = "generic-credentials"
+# regex = '''(?i)(dbpasswd|dbuser|dbname|dbhost|api_key|apikey|secret|key|api|password|user|guid|hostname|pw|auth)(.{0,20})?['|"][0-9a-zA-Z-_!{}/=]{4,120}['|"]'''
+# keywords = [
+#     "pass","db","key","api","auth"
+# ]
+
+[[rules]]
+description = "EC"
+id = "ec-private-key"
+regex = '''-----BEGIN EC PRIVATE KEY-----'''
+keywords = [
+    "EC PRIVATE"
+]
+
+[[rules]]
+description = "RSA"
+id = "rsa-private-key"
+regex = '''-----BEGIN RSA PRIVATE KEY-----'''
+keywords = [
+    "RSA PRIVATE"
+]
+
+# Find all occurrences of the password in the source code
+# Allow properly set passwords with environment variables to pass
+# Only designed for application properties files in java
+# This rule is not perfect, but it is a good start
+[[rules]]
+description = "Hard coded password in application properties"
+id = "hard-coded-password"
+regex = '''(?i).*pass(word)?\s*[:|=].*'''
+[rules.allowlist]
+    regexes = [
+        '''(?i)pass(word)?\s*[:|=]\s*\${[a-zA-Z-_]+}'''
+    ]
